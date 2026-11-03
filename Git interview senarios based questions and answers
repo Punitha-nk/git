@@ -1,0 +1,1661 @@
+
+how to create PR and merge
+Creating and merging a PR (Pull Request) in GitHub is a common workflow when you want to merge your code changes from one branch into another.
+
+Here is the step-by-step process.
+
+1. Create a new branch
+First, switch to the main branch and get the latest code.
+
+git checkout main
+git pull origin main
+
+Create a new feature branch:
+
+git checkout -b feature/my-new-feature
+
+Example:
+
+git checkout -b feature/login-api
+
+2. Make code changes
+Make your changes in your project.
+
+Check which files have changed:
+
+git status
+
+3. Stage and commit changes
+Add your files:
+
+git add .
+
+Commit your changes:
+
+git commit -m "Added login API functionality"
+
+4. Push your branch to GitHub
+git push origin feature/login-api
+
+This uploads your branch to the remote GitHub repository.
+
+5. Create a Pull Request (PR)
+Update An Existing Doc via GitHub —  Latest documentation
+
+Open your repository on GitHub.
+
+Click Compare & pull request (if shown).
+
+Select the branches:
+
+Base: main (where you want to merge).
+
+Compare: feature/login-api (your changes).
+
+Add a PR title.
+
+Describe the changes.
+
+Click Create pull request.
+
+6. Get your PR reviewed
+How to use Git — SQLFluff stable_version documentation
+
+Your teammates can:
+
+Review your code.
+
+Add comments.
+
+Request changes.
+
+Approve your PR.
+
+If changes are requested, update your code and push again:
+
+git add .
+git commit -m "Addressed PR review comments"
+git push origin feature/login-api
+
+The existing PR automatically gets updated.
+
+7. Merge the PR
+Once the PR is approved and all required checks pass:
+
+Creating a Github Bot to Automatically Verify Snapshot Usage in a Pull Request | by Diego Rodrigues | Marionete | Medium
+
+Open your PR.
+
+Click Merge pull request.
+
+Confirm the merge.
+
+GitHub offers three common merge options:
+
+Option
+
+Description
+
+Merge commit
+
+Keeps all commits and creates a merge commit.
+
+Squash and merge
+
+Combines all PR commits into one commit.
+
+Rebase and merge
+
+Applies commits individually on top of the base branch.
+
+Use the option your team follows.
+
+8. Update your local main branch
+After merging:
+
+git checkout main
+git pull origin main
+
+Optionally delete your feature branch:
+
+git branch -d feature/login-api
+git push origin --delete feature/login-api
+
+Complete Git workflow
+main branch
+
+Latest project code
+Create feature branch
+
+git checkout -b feature/my-feature
+Code → Commit → Push
+
+git add . → git commit → git push
+Create Pull Request
+
+Feature branch → main
+Code Review & Approval
+
+Merge PR
+
+Completed
+One important question: Are you using GitHub or GitLab?
+
+I can show you the exact PR creation and merging process with screenshots and commands for your platform.
+
+I need to prepare  for aws  devops interview for GIT  and git hub  as a real time interview questions and answers  with senario based and trouble shooting  for 6 years experience
+AWS DevOps Interview Preparation – Git & GitHub (6 Years Experience)
+For a 6-year experienced AWS DevOps Engineer, interviewers generally expect more than basic Git commands. They want to know how you use Git in real-time projects, manage branches, resolve conflicts, handle production issues, maintain code quality, and integrate GitHub with CI/CD pipelines.
+
+I'll prepare you from an experienced DevOps engineer's perspective, with practical scenarios, troubleshooting commands, and interview-ready answers.
+
+6 Years Experience Level
+Topics covered
+
+Git fundamentals and advanced commands
+
+Git branching strategies
+
+GitHub Pull Requests and merging
+
+Merge conflicts and troubleshooting
+
+Revert, reset, cherry-pick and rebase
+
+GitHub Actions and AWS CI/CD integration
+
+Production incident scenarios
+
+Real-time project-based interview questions
+
+Hands-on Git commands
+
+1. Git and GitHub fundamentals – interview questions
+Q1. What is Git? Why do we use it in DevOps?
+Answer:
+
+Git is a distributed version control system used to manage source code changes.
+
+In DevOps, we use Git to:
+
+Maintain application and infrastructure code.
+
+Track code changes and history.
+
+Collaborate with multiple developers.
+
+Create feature branches.
+
+Review code using Pull Requests.
+
+Integrate with CI/CD tools such as Jenkins and GitHub Actions.
+
+Roll back code when deployment issues occur.
+
+Real-time example:
+
+In my project, developers push application code into GitHub feature branches. Once development is completed, they create Pull Requests against the development branch. After code review and approval, the code is merged.
+
+Jenkins or GitHub Actions detects the merge and triggers the CI/CD pipeline to deploy the application to AWS environments.
+
+Q2. What is the difference between Git and GitHub?
+Git
+
+GitHub
+
+Version control system
+
+Cloud-based Git hosting platform
+
+Installed locally
+
+Web-based platform
+
+Tracks code changes
+
+Hosts repositories
+
+Supports branching and merging
+
+Supports PRs and code reviews
+
+Works offline
+
+Requires connectivity for remote operations
+
+Other Git hosting platforms include GitLab, Bitbucket and AWS CodeCommit.
+
+Q3. What is the difference between Git pull and Git fetch?
+Git fetch:
+
+git fetch origin
+
+Downloads changes from the remote repository but does not merge them into your current branch.
+
+Git pull:
+
+git pull origin main
+
+Downloads changes and integrates them into your current branch. By default, it performs fetch followed by merge.
+
+You can also use:
+
+git pull --rebase origin main
+
+This fetches and rebases your local commits on top of the remote branch.
+
+Interview tip: Fetch is safer when you want to inspect remote changes before integrating them.
+
+Q4. What is the difference between git clone and git fork?
+git clone: Creates a local copy of an existing repository.
+
+git fork: Creates a separate copy of a repository under your GitHub account or organization.
+
+Forking is commonly used in open-source contribution workflows.
+
+Q5. What is the difference between git add, git commit and git push?
+git add .
+git commit -m "Updated application configuration"
+git push origin feature/config-update
+
+git add: Moves changes into the staging area.
+
+git commit: Saves staged changes in local Git history.
+
+git push: Uploads local commits to a remote repository.
+
+2. Git branching strategy – real-time interview questions
+Q6. Which branching strategy have you used in your project?
+Interview-ready answer:
+
+In my project, we follow a GitFlow-style branching strategy with some adjustments based on our release process.
+
+We maintain the following branches:
+
+main / master
+
+Production-ready code
+develop
+
+Integration branch for upcoming releases
+feature/
+
+New functionality
+bugfix/
+
+Bug corrections
+release/
+
+Release preparation
+hotfix/
+
+Urgent production fixes
+Example workflow:
+
+Developer creates a feature branch from develop.
+
+Developer completes code changes.
+
+Developer pushes the feature branch to GitHub.
+
+Developer creates a PR against develop.
+
+Team reviews and approves the PR.
+
+Changes are merged into develop.
+
+Release branch is created for testing.
+
+After validation, release changes are merged into main.
+
+Production deployment pipeline is triggered.
+
+Q7. What is a feature branch?
+A feature branch is a separate branch created to develop a specific functionality without modifying the main development branch.
+
+git checkout develop
+git pull origin develop
+git checkout -b feature/payment-service
+
+After development:
+
+git add .
+git commit -m "Implemented payment service"
+git push origin feature/payment-service
+
+Then create a PR.
+
+Q8. What is a hotfix branch? When do you use it?
+Scenario: An application is running in production, but a critical issue is identified.
+
+We create a hotfix branch from the production branch:
+
+git checkout main
+git pull origin main
+
+git checkout -b hotfix/payment-failure
+
+Fix the issue, test it, commit and push:
+
+git add .
+git commit -m "Fixed payment failure"
+git push origin hotfix/payment-failure
+
+Create a PR against main, get approval, merge and deploy.
+
+We also make sure the fix is integrated into develop so that the issue does not reappear in future releases.
+
+3. Pull Request (PR) and GitHub – important interview questions
+Q9. What is a Pull Request? Explain the complete PR process.
+Answer:
+
+A Pull Request is a request to merge code changes from one branch into another branch.
+
+In my project, developers create PRs after completing their development work. We use PRs to ensure code quality, peer review, and approval before merging code into the integration or production branch.
+
+Practical commands:
+
+git checkout -b feature/user-service
+
+# Make code changes
+
+git add .
+git commit -m "Added user service"
+git push origin feature/user-service
+
+Then in GitHub:
+
+Open the repository.
+
+Click Pull Requests.
+
+Click New Pull Request.
+
+Select base branch: develop.
+
+Select compare branch: feature/user-service.
+
+Add title and description.
+
+Assign reviewers.
+
+Create PR.
+
+Resolve review comments.
+
+Get approval and merge.
+
+Q10. What happens when you create a PR?
+When we create a PR, GitHub:
+
+Compares source and target branches.
+
+Displays file-level changes.
+
+Shows commit history.
+
+Runs configured CI checks.
+
+Allows reviewers to comment.
+
+Checks branch protection requirements.
+
+Allows merging when the required conditions are satisfied.
+
+Q11. What are the different merge strategies in GitHub?
+Strategy
+
+Explanation
+
+When to use
+
+Merge commit
+
+Preserves branch history
+
+When complete history is required
+
+Squash merge
+
+Combines commits into one
+
+Clean and simple history
+
+Rebase merge
+
+Replays commits on target branch
+
+Linear history
+
+My practical approach: If our team wants a clean commit history for feature development, we commonly use squash and merge. However, the final choice depends on repository policy.
+
+Q12. What is branch protection in GitHub?
+Branch protection prevents unauthorized or unreviewed changes from entering important branches.
+
+For production branches, we configure:
+
+Require Pull Request before merging.
+
+Require one or more approvals.
+
+Require status checks to pass.
+
+Prevent force pushes.
+
+Prevent branch deletion.
+
+Require conversation resolution.
+
+Example: Developers cannot directly push code into main. They must create a PR and receive approval.
+
+Q13. What is the difference between PR approval and PR merging?
+Approval means the reviewer has accepted the proposed code changes.
+
+Merge means the changes are integrated into the target branch.
+
+Approval does not automatically mean the PR is merged.
+
+Q14. Can you create a PR without committing?
+No. GitHub PRs are based on commits pushed to a remote branch. We need to commit and push the changes before creating a PR.
+
+Q15. What happens if two developers modify the same file?
+A merge conflict may occur if Git cannot automatically combine the changes.
+
+We need to manually resolve the conflicting sections, test the code, and complete the merge.
+
+4. Git merge conflicts – scenario-based questions
+Very important for 6-year experience
+Q16. You are working on a feature branch. Another developer has merged changes into develop. How will you update your feature branch?
+Scenario:
+
+You are working on:
+
+feature/payment-service
+
+Meanwhile, another developer merged changes into:
+
+develop.
+
+You need to bring the latest develop changes into your feature branch.
+
+Solution:
+
+git checkout develop
+git pull origin develop
+
+git checkout feature/payment-service
+
+git merge develop
+
+If conflicts occur, check:
+
+git status
+
+Open the conflicting files and resolve the conflict markers.
+
+Example:
+
+<<<<<<< HEAD
+Old payment implementation
+=======
+New payment implementation
+>>>>>>> develop
+After resolving:
+
+git add .
+git commit -m "Resolved merge conflicts with develop"
+git push origin feature/payment-service
+
+The existing PR will be updated.
+
+Interview answer: I first fetch the latest changes from the remote branch, integrate them into my feature branch, resolve conflicts, run tests, and push the updated branch.
+
+Q17. What will you do if a merge conflict occurs during a production release?
+Answer:
+
+First, I will not force the merge.
+
+I will:
+
+Identify the conflicting files.
+
+Understand the changes from both branches.
+
+Discuss with the respective developers if business logic is affected.
+
+Resolve conflicts carefully.
+
+Run unit and integration tests.
+
+Validate the build.
+
+Get the required approval.
+
+Proceed with the merge and deployment.
+
+For production releases, I will ensure the conflict resolution is tested in a non-production environment first.
+
+Q18. How do you abort a merge if something goes wrong?
+git merge --abort
+
+This attempts to return the working tree to its state before the merge started.
+
+For an in-progress rebase:
+
+git rebase --abort
+
+Q19. How do you resolve a conflict during a rebase?
+git status
+
+Edit the conflicting files and remove conflict markers.
+
+Then:
+
+git add <filename>
+git rebase --continue
+
+To cancel:
+
+git rebase --abort
+
+5. Important advanced Git commands
+These are particularly important for experienced DevOps interviews.
+
+Q20. What is the difference between git reset, git revert and git restore?
+Command
+
+Purpose
+
+git reset
+
+Moves HEAD and can modify staging/working tree
+
+git revert
+
+Creates a new commit that reverses an earlier commit
+
+git restore
+
+Restores file contents
+
+Example 1: Undo the last commit but keep changes staged
+
+git reset --soft HEAD~1
+
+Example 2: Undo the last commit and unstage changes
+
+git reset --mixed HEAD~1
+
+Example 3: Remove the last commit and discard its tracked changes
+
+git reset --hard HEAD~1
+
+Be careful: --hard can permanently discard uncommitted changes.
+
+Example 4: Revert a commit safely
+
+git revert <commit-id>
+
+This creates a new commit that reverses the specified commit.
+
+Interview tip: In a shared production branch, I generally prefer git revert instead of git reset, because revert preserves the existing commit history.
+
+Q21. What is cherry-pick?
+Cherry-pick allows us to apply a specific commit from one branch to another branch.
+
+Real-time scenario:
+
+A developer fixed a critical bug in the develop branch, but we need only that particular fix in production.
+
+First, identify the commit:
+
+git log --oneline
+
+Switch to the target branch:
+
+git checkout main
+git pull origin main
+
+Apply the specific commit:
+
+git cherry-pick <commit-id>
+
+Push the change:
+
+git push origin main
+
+In a protected production branch, this should normally be done through a PR rather than pushing directly.
+
+Q22. What is git rebase?
+Rebase moves or replays commits from one branch onto another base commit.
+
+Example:
+
+git checkout feature/login
+git fetch origin
+git rebase origin/develop
+
+This places your feature commits on top of the latest develop history.
+
+Merge vs rebase:
+
+Merge preserves branch history and creates a merge commit when needed.
+
+Rebase creates a linear history by replaying commits.
+
+Avoid rebasing shared branches because it rewrites commit history.
+
+Q23. How do you identify who modified a particular line of code?
+git blame filename
+
+For example:
+
+git blame application.yml
+
+This shows the commit, author and date associated with each line.
+
+Q24. How do you check commit history?
+git log
+git log --oneline
+git log --graph --oneline --all
+
+Q25. How do you find a particular commit?
+git log --oneline
+git show <commit-id>
+
+You can also search commit messages:
+
+git log --grep="payment"
+
+6. Real-time troubleshooting scenarios
+This is one of the most important sections for your experience level. Interviewers often give a problem and expect you to explain how you would investigate it.
+
+Scenario 1: You pushed code to the wrong branch. What will you do?
+Situation: You accidentally pushed feature code into the develop branch.
+
+Answer:
+
+First, I identify whether other developers have already pulled or built on those changes.
+
+If the incorrect changes are already shared, I prefer reverting them.
+
+git checkout develop
+git pull origin develop
+
+git revert <commit-id>
+git push origin develop
+
+Then I create the correct feature branch and apply the changes there if needed.
+
+If the commit has not been shared, I may consider resetting the branch, subject to team approval.
+
+Scenario 2: You committed a password or AWS access key and pushed it to GitHub. What will you do?
+Production security incident
+Answer:
+
+This is a security incident.
+
+My first priority is to invalidate the exposed credential.
+
+Steps:
+
+Immediately deactivate or rotate the exposed AWS access key in IAM.
+
+Check CloudTrail for suspicious API activity.
+
+Notify the security team.
+
+Remove the secret from the current code.
+
+Use AWS Secrets Manager or Systems Manager Parameter Store to manage secrets.
+
+Review GitHub repository history and remove the secret from history if necessary.
+
+Coordinate a force push if history rewriting is required.
+
+Inform all developers to synchronize their local repositories.
+
+Important: Deleting a secret from the latest commit does not remove it from Git history. Even after cleaning history, treat the credential as compromised.
+
+Scenario 3: Your GitHub PR is showing merge conflicts. How will you troubleshoot?
+Answer:
+
+First, I check the target branch and source branch.
+
+git fetch origin
+git checkout feature/login
+git merge origin/develop
+
+Then:
+
+git status
+
+Resolve conflicting files, test the application and push the changes.
+
+git add .
+git commit -m "Resolved merge conflicts"
+git push origin feature/login
+
+The PR should now reflect the updated branch.
+
+Scenario 4: Your Git push is rejected with a non-fast-forward error. How will you resolve it?
+Error:
+
+! [rejected] feature/login -> feature/login
+(non-fast-forward)
+Reason: Someone has pushed new commits to the remote branch that are missing from your local branch.
+
+Solution:
+
+git fetch origin
+git pull --rebase origin feature/login
+
+Resolve any conflicts, then:
+
+git push origin feature/login
+
+Avoid using git push --force as the first solution.
+
+Scenario 5: You accidentally deleted a branch. Can you recover it?
+Yes, if the relevant commit is still reachable through the reflog or another reference.
+
+git reflog
+
+Find the last commit associated with that branch.
+
+Recover it:
+
+git checkout -b feature/recovered <commit-id>
+
+Then push it:
+
+git push origin feature/recovered
+
+Scenario 6: Your GitHub PR checks are failing. What will you check?
+Answer:
+
+I will check:
+
+GitHub Actions workflow logs.
+
+Build failures.
+
+Unit test failures.
+
+Code quality and security scan failures.
+
+Dependency installation issues.
+
+Branch protection rules.
+
+Required status checks.
+
+Environment and permission issues.
+
+For example, if a Jenkins build is integrated with GitHub, I will inspect Jenkins console output and determine whether the failure is related to Git checkout, build dependencies, tests or deployment.
+
+Scenario 7: A developer force-pushed to a shared branch and your commits disappeared. What will you do?
+Answer:
+
+I will not immediately push more changes.
+
+First:
+
+git reflog
+git log --all --oneline
+
+I will identify the missing commits and recover them into a separate branch.
+
+git checkout -b recovery-branch <commit-id>
+
+Then I will coordinate with the team to restore the required changes safely through a PR.
+
+Scenario 8: Your GitHub Actions pipeline is not triggering after a code push. What will you check?
+Answer:
+
+I will check:
+
+Workflow file exists under .github/workflows/.
+
+YAML syntax is valid.
+
+The on: trigger matches the branch being pushed.
+
+Workflow is not disabled.
+
+Repository Actions permissions.
+
+Path filters and branch filters.
+
+Whether the workflow is skipped because of commit-message conditions.
+
+Organization-level Actions restrictions.
+
+Example:
+
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: echo "Building application"
+
+Scenario 9: Your PR was merged, but the application deployment failed. What will you do?
+Answer:
+
+I will separate the Git merge issue from the deployment issue.
+
+My troubleshooting steps:
+
+Confirm whether the merge completed successfully.
+
+Identify the exact commit deployed.
+
+Check GitHub Actions or Jenkins pipeline logs.
+
+Identify whether the failure is in build, test, artifact publishing or deployment.
+
+Check AWS deployment logs and application health.
+
+If the release caused a production issue, execute the approved rollback procedure.
+
+Fix the issue and create a new PR.
+
+Important: Reverting a Git commit alone does not automatically roll back a deployed AWS application. The deployment pipeline must deploy the reverted version or a known-good artifact.
+
+Scenario 10: A developer says their local code is different from GitHub. How will you troubleshoot?
+git status
+git branch -vv
+git remote -v
+git fetch origin
+git log --oneline --graph --all
+
+I will check:
+
+Whether they are on the correct branch.
+
+Whether local changes are uncommitted.
+
+Whether they have pulled the latest remote changes.
+
+Whether they are tracking the correct remote branch.
+
+Whether their local branch has diverged.
+
+Then I will synchronize the branch safely.
+
+7. Git advanced concepts – 6 years experience
+Q26. What is HEAD in Git?
+HEAD is a reference to the currently checked-out commit, usually through the current branch.
+
+git log --oneline -1
+git rev-parse HEAD
+
+Q27. What are the three states of Git?
+Git has three important working states:
+
+State
+
+Meaning
+
+Modified
+
+File has changed but is not staged
+
+Staged
+
+File is ready for commit
+
+Committed
+
+Changes are saved in local repository history
+
+Q28. What is the difference between local and remote branches?
+Local branch: Exists in your local repository.
+
+Remote-tracking branch: Represents the last known state of a remote branch.
+
+Remote branch: Exists in the remote repository, such as GitHub.
+
+Commands:
+
+git branch
+git branch -r
+git branch -a
+
+Q29. What is a Git tag?
+A tag identifies a specific commit, commonly used for application releases.
+
+Example:
+
+git tag v1.0.0
+git push origin v1.0.0
+
+To create an annotated tag:
+
+git tag -a v1.0.0 -m "Production release 1.0"
+git push origin v1.0.0
+
+In DevOps, tags are useful for identifying which version of application code was deployed to production.
+
+Q30. What is .gitignore?
+.gitignore specifies files and directories that Git should ignore when detecting untracked files.
+
+Example:
+
+.env
+*.log
+node_modules/
+target/
+.terraform/
+*.tfstate
+Important: .gitignore does not automatically remove files already tracked by Git.
+
+To stop tracking an existing file:
+
+git rm --cached .env
+git commit -m "Stop tracking environment file"
+
+Q31. What is git stash?
+Git stash temporarily saves uncommitted changes so that you can switch branches without committing incomplete work.
+
+git stash
+git checkout develop
+
+Restore changes:
+
+git stash list
+git stash pop
+
+Difference:
+
+git stash pop: Applies changes and removes the stash entry if successful.
+
+git stash apply: Applies changes but keeps the stash entry.
+
+Q32. What is git bisect?
+Git bisect helps identify which commit introduced a bug using binary search.
+
+Example:
+
+git bisect start
+git bisect bad
+git bisect good <known-good-commit>
+
+Git checks out commits for testing.
+
+Mark each tested commit:
+
+git bisect good
+
+or
+
+git bisect bad
+
+When finished:
+
+git bisect reset
+
+Real-time use: A production application started failing after a recent deployment, and we don't know which commit introduced the issue.
+
+Q33. What is git reflog?
+Git reflog records updates to references such as HEAD and branch movements in your local repository.
+
+git reflog
+
+It is useful when:
+
+A branch was accidentally deleted.
+
+A reset removed a commit from the branch.
+
+You need to recover a previous HEAD position.
+
+Q34. What is a bare repository?
+A bare repository contains Git version-control data without a working directory.
+
+It is commonly used as a central remote repository.
+
+git init --bare project.git
+
+Q35. What are Git hooks?
+Git hooks are scripts executed at specific Git lifecycle events.
+
+Examples:
+
+Hook
+
+Purpose
+
+pre-commit
+
+Validate code before commit
+
+commit-msg
+
+Validate commit message
+
+pre-push
+
+Run checks before pushing
+
+post-merge
+
+Execute tasks after merging
+
+Example location:
+
+.git/hooks/
+
+In a DevOps project, we can use hooks to enforce commit-message standards, formatting and basic validation.
+
+8. GitHub administration and security – interview questions
+Q36. How do you manage GitHub repository access?
+I follow the principle of least privilege.
+
+Typical access levels:
+
+Read: Can view and clone.
+
+Triage: Can manage issues and PRs.
+
+Write: Can push code and manage PRs.
+
+Maintain: Can manage repository without sensitive administrative access.
+
+Admin: Full repository administration.
+
+In an organization, I prefer managing access through teams instead of assigning permissions individually.
+
+Q37. What is the difference between GitHub authentication using HTTPS and SSH?
+HTTPS:
+
+git clone https://github.com/company/project.git
+
+Authentication is generally done through a Personal Access Token or supported credential mechanism, not an account password.
+
+SSH:
+
+git clone git@github.com:company/project.git
+
+Authentication uses an SSH key pair.
+
+For automated CI/CD workflows, I prefer using short-lived credentials or appropriately scoped tokens wherever supported.
+
+Q38. What is a GitHub Personal Access Token?
+A PAT is a token used to authenticate GitHub operations.
+
+It can be used for:
+
+Repository access.
+
+Git operations over HTTPS.
+
+API operations.
+
+Automation.
+
+I prefer fine-grained tokens with minimum required repository permissions and an expiration date.
+
+Q39. How do you protect sensitive information in GitHub?
+My approach:
+
+Never commit passwords or AWS access keys.
+
+Use AWS Secrets Manager or SSM Parameter Store.
+
+Configure GitHub secret scanning.
+
+Enable push protection where available.
+
+Use IAM roles and OIDC for GitHub Actions to access AWS.
+
+Apply least-privilege repository permissions.
+
+Rotate exposed credentials immediately.
+
+Q40. What is GitHub Actions?
+GitHub Actions is a CI/CD automation platform integrated with GitHub.
+
+It can automate:
+
+Build.
+
+Testing.
+
+Code quality checks.
+
+Docker image creation.
+
+Image publishing to Amazon ECR.
+
+Deployment to AWS.
+
+Example workflow:
+
+name: DevOps-CI
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build application
+        run: |
+          echo "Building application"
+
+      - name: Run tests
+        run: |
+          echo "Running unit tests"
+
+Q41. How do you integrate GitHub with AWS?
+Interview-ready answer:
+
+In our DevOps environment, we integrate GitHub with AWS to automate application deployments.
+
+Typical architecture:
+
+GitHub Repository
+
+Developer pushes code / PR merged
+GitHub Actions
+
+Build, test and scan
+AWS IAM + OIDC
+
+Secure AWS authentication without long-lived AWS access keys
+Amazon ECR
+
+Store Docker images
+Amazon ECS / EKS
+
+Deploy application
+We configure an IAM OIDC identity provider and a role with restricted trust conditions. GitHub Actions requests temporary AWS credentials using AssumeRoleWithWebIdentity.
+
+This avoids storing long-lived AWS access keys in GitHub secrets.
+
+Q42. How do you trigger a deployment only after PR merge?
+We can use a push trigger on the deployment branch.
+
+on:
+  push:
+    branches:
+      - main
+
+This workflow runs when a push event updates main, including a PR merge that updates main.
+
+For deployment workflows, we also use environment protection rules and approval requirements where appropriate.
+
+Q43. What is CODEOWNERS in GitHub?
+CODEOWNERS defines which users or teams should review changes to specific files or directories.
+
+Example:
+
+# Infrastructure code
+/terraform/ @devops-team
+
+# Application code
+/src/ @backend-team
+
+# Deployment configuration
+/.github/workflows/ @devops-team
+This helps ensure the appropriate team reviews sensitive infrastructure and pipeline changes.
+
+9. AWS DevOps real-time project scenarios
+These questions are especially useful because interviewers with 6 years of experience often want to understand how you handled actual project situations.
+
+Q44. A developer merged code into main accidentally. How will you handle it?
+Answer:
+
+First, I will identify the merged commit and check whether deployment has started.
+
+If the code is not suitable for production, I will:
+
+Stop or pause the deployment pipeline if possible.
+
+Assess the impact.
+
+Create a revert PR.
+
+Get the required approvals.
+
+Merge the revert.
+
+Deploy the previous stable version if necessary.
+
+Inform the team and document the incident.
+
+Command:
+
+git revert -m 1 <merge-commit-id>
+
+Here -m 1 specifies the mainline parent of the merge commit. I would verify the correct parent before executing it.
+
+Q45. Your application deployment is successful, but the latest code is not visible. What will you check?
+Answer:
+
+I will investigate the entire deployment chain.
+
+Was the correct branch checked out?
+
+Was the correct commit built?
+
+Was the new artifact published?
+
+Was the correct Docker image tag used?
+
+Was ECS/EKS updated with the new image?
+
+Is the old image cached or still running?
+
+Is traffic routed to the correct environment?
+
+I will compare the Git commit SHA, Docker image digest and deployed application version to identify where the mismatch happened.
+
+Q46. How do you maintain code quality before merging into production?
+Answer:
+
+We enforce PR checks such as:
+
+Code review.
+
+Unit tests.
+
+Integration tests.
+
+SonarQube quality gate.
+
+Dependency vulnerability scans.
+
+Container image scanning.
+
+Terraform validation and security scanning.
+
+Successful CI build.
+
+We configure branch protection so required checks must pass before merging.
+
+Q47. How do you handle multiple developers working on the same repository?
+Answer:
+
+We follow a defined branching strategy and code review process.
+
+Each developer works on an independent feature branch.
+
+Developers regularly synchronize with the target branch.
+
+PRs require peer review.
+
+CI checks run before merging.
+
+Conflicts are resolved by the developers responsible for the affected code.
+
+Only authorized users can merge into protected branches.
+
+Q48. How do you rollback a production release using Git?
+Answer:
+
+If a release introduces a production issue, I first identify the exact problematic commit.
+
+For a normal commit:
+
+git revert <bad-commit-id>
+
+For a merge commit:
+
+git revert -m 1 <merge-commit-id>
+
+Then I create a PR, get approval and merge it.
+
+The deployment pipeline deploys the reverted code or a known-good artifact.
+
+For urgent production recovery, I follow the organization's approved rollback process rather than bypassing branch protections.
+
+Q49. What is the difference between GitHub Actions and Jenkins?
+GitHub Actions
+
+Jenkins
+
+Integrated with GitHub
+
+Separate automation server
+
+GitHub-hosted or self-hosted runners
+
+Agents and controllers
+
+YAML-based workflows
+
+Jenkinsfile / Groovy pipelines
+
+Built-in GitHub event triggers
+
+Webhooks and SCM polling
+
+Managed service option
+
+Self-managed infrastructure is common
+
+In projects, both can integrate with AWS for CI/CD deployments.
+
+Q50. How do you manage Terraform code using GitHub?
+Answer:
+
+We maintain Terraform code in GitHub and use feature branches and PR reviews.
+
+Typical process:
+
+Developer creates a Terraform feature branch.
+
+Updates infrastructure code.
+
+Creates a PR.
+
+CI runs terraform fmt, terraform validate and security checks.
+
+CI generates a Terraform plan.
+
+Reviewers validate the proposed infrastructure changes.
+
+After approval, the deployment workflow runs terraform apply with the appropriate permissions and state locking.
+
+This ensures infrastructure changes are version-controlled and reviewed.
+
+10. Most important Git troubleshooting commands – quick revision
+Keep this command sheet ready for the interview.
+
+Problem
+
+Command
+
+Check current branch
+
+git branch
+
+Check working status
+
+git status
+
+Check remote URL
+
+git remote -v
+
+Download remote changes
+
+git fetch origin
+
+Pull latest changes
+
+git pull origin main
+
+View commit history
+
+git log --oneline
+
+View all branches
+
+git branch -a
+
+Resolve merge
+
+git merge branch-name
+
+Abort merge
+
+git merge --abort
+
+Undo commit safely
+
+git revert <commit>
+
+Apply specific commit
+
+git cherry-pick <commit>
+
+Temporarily save changes
+
+git stash
+
+Restore stashed changes
+
+git stash pop
+
+Recover lost commit
+
+git reflog
+
+Find code author
+
+git blame file-name
+
+Compare branches
+
+git diff main..develop
+
+Delete local branch
+
+git branch -d branch-name
+
+Delete remote branch
+
+git push origin --delete branch-name
+
+Show commit details
+
+git show <commit>
+
+Find a bug-introducing commit
+
+git bisect
+
+11. Top 15 challenging questions interviewers may ask
+These are questions I would prioritize before attending a 6-year AWS DevOps interview.
+
+Interview self-test
+
+0/15 answers revealed
+
+1.
+
+What happens internally when you execute git pull?
+
+
+2.
+
+Can you delete a commit from Git history after pushing?
+
+
+3.
+
+What is git push --force-with-lease?
+
+
+4.
+
+How do you revert a merge commit?
+
+
+5.
+
+What is a detached HEAD?
+
+
+6.
+
+What happens if you delete a branch after merging a PR?
+
+
+7.
+
+How do you compare two commits?
+
+
+8.
+
+How do you handle a large repository?
+
+
+9.
+
+What is Git LFS?
+
+
+10.
+
+What happens when you squash commits?
+
+
+11.
+
+What is the difference between origin and upstream?
+
+
+12.
+
+How do you check whether your branch is ahead or behind?
+
+
+13.
+
+How do you prevent accidental commits to main?
+
+
+14.
+
+What is a shallow clone?
+
+
+15.
+
+How do you identify a problematic commit in production?
+
+12. How to explain your real-time project experience in an interview
+This is important. At 6 years of experience, don't just explain commands. Explain how you used them in your project.
+
+You can use this sample answer as a template, adjusting it to your actual experience.
+
+Question: Explain your Git and GitHub workflow in your current project.
+
+Sample interview answer:
+
+"In my project, we use GitHub as our source code management platform.
+
+We maintain separate branches for development, release and production. Developers create individual feature branches from the development branch and work on their assigned tasks.
+
+After completing the changes, they commit and push the code to GitHub and create a Pull Request.
+
+We have configured branch protection rules, which require peer reviews and successful CI pipeline execution before merging.
+
+When a PR is created, our CI pipeline performs code checkout, compilation, unit testing, SonarQube analysis and security scanning.
+
+After approval, the PR is merged into the development branch.
+
+Once the release is ready, we promote the changes through the release and production process. Our CI/CD pipeline builds Docker images, pushes them to Amazon ECR and deploys the application to ECS or EKS, depending on the application.
+
+We also use Git tags to identify releases and Git revert to safely roll back problematic code changes.
+
+I am also involved in troubleshooting merge conflicts, failed pipeline executions, incorrect branch merges and production deployment issues."
+
+13. Your 7-day Git and GitHub interview preparation plan
+7-day study plan
+
+Beginner to interview-ready revision
+1
+
+Day 1: Git fundamentals
+
+clone, init, add, commit, push, pull, fetch, status, log
+
+2
+
+Day 2: Branching and merging
+
+feature branches, GitFlow, merge conflicts, rebase, cherry-pick
+
+3
+
+Day 3: GitHub and PR
+
+Create PR, review, approval, branch protection, merge strategies
+
+4
+
+Day 4: Advanced Git
+
+reset, revert, stash, reflog, bisect, tags, hooks
+
+5
+
+Day 5: Troubleshooting
+
+Push rejected, conflicts, deleted branches, accidental commits, secrets
+
+6
+
+Day 6: AWS DevOps integration
+
+GitHub Actions, Jenkins, AWS OIDC, ECR, ECS, EKS, Terraform
+
+7
+
+Day 7: Mock interview
+
+Practice 30 scenario-based questions and explain your project workflow
+
+14. Let's prepare you like a real interview
+I recommend that we do a mock interview rather than only memorizing answers.
+
+I'll ask one question at a time, you answer as if you are sitting in an AWS DevOps technical interview, and I'll evaluate your answer based on a 6-year experience level.
+
+Set up your mock interview
+
+Experience level
+
+
+6 years – AWS DevOps Engineer
+
+6 years – Senior DevOps Engineer
+Interview topics
+
+
+Git + GitHub + troubleshooting
+
+Git + GitHub + Jenkins + CI/CD
+
+Complete AWS DevOps interview
+Interview style
+
+
+One question at a time (real interview)
+
+10 scenario questions together
+
+Questions with answers and explanations
+My recommendation: Focus especially on merge conflicts, reset vs revert, cherry-pick, rebase, accidental production commits, GitHub branch protection, failed PR checks, and GitHub Actions integration with AWS. These are excellent areas to demonstrate practical 6-year DevOps experience.
+
+
+
+
